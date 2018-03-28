@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql
+    container_name: database.dev
+    volumes:
+      - /var/lib/mysql/:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_USER: root
+      MYSQL_PASSWORD: pass
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+  mongo:
+    image: mongo:3.2
+    container_name: mongo.dev
+    volumes:
+      - ./mongo/:/data/db
+    ports:
+      - "27017:27017"
