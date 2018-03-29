@@ -8,6 +8,8 @@ services:
       - /var/lib/mysql/:/var/lib/mysql
     ports:
       - "3306:3306"
+    networks:
+      - custom
     environment:
       MYSQL_ROOT_PASSWORD: pass
       MYSQL_USER: root
@@ -20,3 +22,7 @@ services:
       - ./mongo/:/data/db
     ports:
       - "27017:27017"
+
+networks:
+  custom:
+    external: true
