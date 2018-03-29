@@ -5,7 +5,7 @@ services:
     image: mysql
     container_name: database.dev
     volumes:
-      - /var/lib/mysql/:/var/lib/mysql
+      - ./data/mysql/:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
@@ -19,7 +19,7 @@ services:
     image: mongo:3.2
     container_name: mongo.dev
     volumes:
-      - ./mongo/:/data/db
+      - ./data/mongo/:/data/db
     ports:
       - "27017:27017"
 
