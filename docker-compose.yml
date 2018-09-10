@@ -16,13 +16,31 @@ services:
       MYSQL_PASSWORD: pass
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   mongo:
-    image: mongo:3.2
-    container_name: mongo.dev
+    image: mongo:3.6
+    container_name: mongo
+    working_dir: /app
     volumes:
       - ./data/mongo/:/data/db
+      - ./data/mongo_mount/:/app
     ports:
       - "27017:27017"
-
+  rabbitmq:
+    container_name: rabbitmq
+    build: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "4369:4369"
+      - "25672:25672"
+    networks:
+      - custom
+  # redis:
+  #   container_name: redis
+  #   image: redis
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - custom
 networks:
   custom:
-    external: true
+    external: true  
